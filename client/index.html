@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VulnAuthLab - Security Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <header class="hacker-header">
+        <h1><span class="glitch" data-text="VulnAuthLab">VulnAuthLab</span> <span class="blink">_</span></h1>
+        <div class="controls">
+            <div class="mode-group">
+                <button id="btn-sql" class="active">SQL MODE</button>
+                <button id="btn-nosql">NoSQL MODE</button>
+            </div>
+            <div class="mode-group">
+                <button id="btn-vulnerable" class="active danger-text">VULNERABLE</button>
+                <button id="btn-secure" class="safe-text">SECURE</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <!-- Panel 1: DB Info -->
+        <div class="panel db-info-panel">
+            <h2>DATABASE INFO</h2>
+            <div id="db-sql-info" class="db-details">
+                <h3>SQLite</h3>
+                <p>Status: <span class="status-ok">Online</span></p>
+                <p>Records: 2 users</p>
+                <ul>
+                    <li>admin / admin123</li>
+                    <li>test / 123456</li>
+                </ul>
+            </div>
+            <div id="db-nosql-info" class="db-details hidden">
+                <h3>MongoDB (In-Memory)</h3>
+                <p>Status: <span class="status-ok">Online</span></p>
+                <p>Records: 2 documents</p>
+                <ul>
+                    <li>admin / admin123</li>
+                    <li>test / 123456</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Panel 2: Login Panel -->
+        <div class="panel login-panel">
+            <h2>AUTHENTICATION</h2>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="text" id="password" name="password" autocomplete="off">
+                </div>
+                <button type="submit" class="btn-login">[ EXECUTE LOGIN ]</button>
+            </form>
+            <div id="login-result" class="result-banner"></div>
+        </div>
+
+        <!-- Panel 3: Query Console -->
+        <div class="panel query-console">
+            <h2>LIVE QUERY CONSOLE</h2>
+            <div class="terminal-box">
+                <pre><code id="query-output">Waiting for execution...</code></pre>
+            </div>
+            <div id="injection-alert" class="alert hidden">⚡ INJECTION DETECTED ⚡</div>
+        </div>
+
+        <!-- Panel 4: Raw HTTP Request -->
+        <div class="panel raw-http-panel">
+            <h2>RAW HTTP REQUEST</h2>
+            <div class="terminal-box">
+                <pre><code id="raw-http-output">Waiting for request...</code></pre>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Panel: Attack Logs -->
+    <section class="logs-section">
+        <h2>ATTACK LOGS</h2>
+        <div class="table-container">
+            <table id="logs-table">
+                <thead>
+                    <tr>
+                        <th>TIME</th>
+                        <th>IP</th>
+                        <th>ENDPOINT</th>
+                        <th>PAYLOAD</th>
+                        <th>RESULT</th>
+                    </tr>
+                </thead>
+                <tbody id="logs-body">
+                    <!-- Logs will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="app.js"></script>
+</body>
+</html>

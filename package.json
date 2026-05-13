@@ -1,0 +1,24 @@
+{
+  "name": "vulnauthlab",
+  "version": "1.0.0",
+  "description": "SQL and NoSQL Injection Demo Lab",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "html-to-docx": "^1.8.0",
+    "marked": "^18.0.3",
+    "mongodb": "^6.5.0",
+    "mongodb-memory-server": "^9.2.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

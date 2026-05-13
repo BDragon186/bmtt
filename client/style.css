@@ -1,0 +1,302 @@
+:root {
+  --bg: #0a0a0f;
+  --surface: #0d1117;
+  --surface-2: #161b22;
+  --primary: #00ff41;
+  --accent: #00bfff;
+  --danger: #ff3131;
+  --muted: #8b949e;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--primary);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* CRT Scanlines Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0,0,0,0.2) 50%,
+    rgba(0,0,0,0.2)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+.hacker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--primary);
+  padding-bottom: 10px;
+}
+
+.hacker-header h1 {
+  font-size: 2rem;
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary);
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+}
+
+.mode-group {
+  display: flex;
+  border: 1px solid var(--primary);
+}
+
+button {
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--primary);
+}
+
+button.active {
+  background: rgba(0, 255, 65, 0.2);
+  color: var(--primary);
+  box-shadow: inset 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+button.danger-text.active {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: rgba(255, 49, 49, 0.15);
+  box-shadow: inset 0 0 10px rgba(255, 49, 49, 0.5);
+}
+
+button.safe-text.active {
+  color: var(--accent);
+  background: rgba(0, 191, 255, 0.15);
+  box-shadow: inset 0 0 10px rgba(0, 191, 255, 0.5);
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 2fr 1.5fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  padding: 15px;
+  position: relative;
+}
+
+.panel h2 {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: var(--accent);
+  border-bottom: 1px dashed var(--muted);
+  padding-bottom: 5px;
+}
+
+.db-details p {
+  margin: 5px 0;
+  color: var(--muted);
+}
+
+.db-details ul {
+  list-style-type: none;
+  margin-top: 10px;
+  color: var(--muted);
+}
+
+.status-ok {
+  color: var(--primary);
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--primary);
+}
+
+.input-group input {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1px solid var(--muted);
+  color: var(--primary);
+  padding: 8px;
+  font-family: var(--font-mono);
+  outline: none;
+  transition: all 0.3s;
+}
+
+.input-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.btn-login {
+  width: 100%;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.btn-login:hover {
+  background: var(--primary);
+  color: var(--bg);
+}
+
+.result-banner {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  display: none;
+}
+
+.result-banner.success {
+  display: block;
+  background: rgba(0, 255, 65, 0.2);
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 15px var(--primary);
+}
+
+.result-banner.error {
+  display: block;
+  background: rgba(255, 49, 49, 0.2);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  box-shadow: 0 0 15px var(--danger);
+}
+
+.terminal-box {
+  background: var(--surface-2);
+  padding: 10px;
+  border: 1px solid var(--muted);
+  height: 200px;
+  overflow-y: auto;
+  color: var(--muted);
+}
+
+.terminal-box code {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.alert {
+  margin-top: 10px;
+  padding: 5px;
+  background: var(--danger);
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  color: var(--accent);
+  background: var(--surface-2);
+}
+
+td {
+  color: var(--muted);
+}
+
+td.result-bypass {
+  color: var(--danger);
+  font-weight: bold;
+}
+
+td.result-success {
+  color: var(--primary);
+}
+
+td.result-fail {
+  color: var(--muted);
+}
+
+/* Glitch Effect for Title when Hacked */
+.glitch-active {
+  animation: glitch-anim 0.5s cubic-bezier(.25, .46, .45, .94) both infinite;
+  color: var(--danger) !important;
+  text-shadow: 0 0 10px var(--danger) !important;
+}
+
+@keyframes glitch-anim {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
